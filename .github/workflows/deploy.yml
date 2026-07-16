@@ -28,6 +28,18 @@ jobs:
           run: | 
                 bun run test
 
+        - name: Run lint
+          run: |
+           bun run lint
+
+        - name: Check typecheck
+          run: |
+              bun run typecheck
+
+        - name: Check build
+          run: |
+           bun run build
+
     deploy:
         runs-on: ubuntu-latest
         needs: run-test
