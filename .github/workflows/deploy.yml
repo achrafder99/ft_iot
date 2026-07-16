@@ -21,7 +21,7 @@ jobs:
             - name: Build and Push Docker Image
               uses: docker/build-push-action@v7
               with:
-                context: .
+                context: ./dockerfile
                 push: true
                 tags: ${{secrets.DOCKER_USERNAME}}/nest-app:latest
 
