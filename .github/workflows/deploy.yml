@@ -11,7 +11,5 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v7.0.0
-            - name: Test bash
-              run: | 
-                echo "Hello world"
-                ls -la
+            - name : test Docker file
+              run : docker ps
