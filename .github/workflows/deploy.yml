@@ -72,6 +72,11 @@ jobs:
                 tags: |
                     ${{ secrets.DOCKER_USERNAME }}/nest-app:latest
                     ${{ secrets.DOCKER_USERNAME }}/nest-app:${{ steps.vars.outputs.sha_short }}
+
+            - name: Scan image for vulnerabilities
+              uses: crazy-max/ghaction-container-scan@v4
+              with:
+                image: ${{ secrets.DOCKER_USERNAME }}/nest-app:latest
             
             - name: Deploy to Production Server
               run: echo "Deploying to Production Server..."
