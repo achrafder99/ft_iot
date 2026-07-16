@@ -30,4 +30,6 @@ jobs:
               with:
                 context: .
                 push: true
-                tags: ${{secrets.DOCKER_USERNAME}}/nest-app:${{ secrets.GITHUB_TOKEN }}"
+                tags: |
+                    ${{ secrets.DOCKER_USERNAME }}/nest-app:latest
+                    ${{ secrets.DOCKER_USERNAME }}/nest-app:${{ steps.vars.outputs.sha_short }}
