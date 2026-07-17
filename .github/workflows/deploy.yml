@@ -92,4 +92,6 @@ jobs:
                 username: ${{secrets.AZURE_USERNAME}}
                 key: ${{secrets.PASSWORD}}
                 script: | 
-                    docker ps
+                    touch test.txt
+
+
