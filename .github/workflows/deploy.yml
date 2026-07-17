@@ -89,7 +89,7 @@ jobs:
               uses: appleboy/ssh-action@v1
               with:
                 host: ${{secrets.HOST}}
-                username: ${{secrets.USERNAME}}
+                username: ${{secrets.AZURE_USERNAME}}
                 key: ${{secrets.PASSWORD}}
                 script: | 
                     docker ps
