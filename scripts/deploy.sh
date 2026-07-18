@@ -20,7 +20,6 @@ set -euo pipefail
 : "${IMAGE_TAG:?IMAGE_TAG is required}"
 : "${CONTAINER_NAME:?CONTAINER_NAME is required}"
 : "${APP_PORT:?APP_PORT is required}"
-: "${VM_HOST:?VM_HOST is required}"
 HEALTH_PATH="${HEALTH_PATH:-/health}"
 ENV_FILE="/opt/app/.env"
 FULL_IMAGE="${IMAGE_NAME}:${IMAGE_TAG}"
