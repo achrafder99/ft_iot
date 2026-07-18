@@ -105,21 +105,17 @@ jobs:
             - name: Setup SSH
               run: |
                 mkdir -p ~/.ssh
-                echo "{{ secrets.AZURE_VM_SSH_KEY}}" > ~/.ssh/deploy_key
+                printf '%s\n' "${{ secrets.AZURE_VM_SSH_KEY }}" > ~/.ssh/deploy_key
                 chmod 600 ~/.ssh/deploy_key
                 ssh-keyscan -p "${{ secrets.AZURE_VM_SSH_PORT }}" -H "${{ secrets.AZURE_VM_HOST }}" >> ~/.ssh/known_hosts
 
             - name: Debug key bytes
               run: |
-               echo "--- size and hash on runner ---"
                wc -c ~/.ssh/deploy_key
                sha256sum ~/.ssh/deploy_key
-               echo "--- first and last lines ---"
                head -1 ~/.ssh/deploy_key
                tail -1 ~/.ssh/deploy_key
-               echo "--- hexdump of first 20 bytes ---"
-               head -c 20 ~/.ssh/deploy_key | xxd
-
+            
             - name: Copy deploy script to server
               run: |
                 scp -P "${{ secrets.AZURE_VM_SSH_PORT }}" -i ~/.ssh/deploy_key \
