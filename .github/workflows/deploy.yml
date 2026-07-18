@@ -126,17 +126,17 @@ jobs:
               env:
                  IMAGE_TAG: ${{ needs.build-and-push.outputs.image_tag }}
               run: | 
-                ssh -p "${{ secrets.AZURE_VM_SSH_PORT }}" -i ~/.ssh/deploy_key \ 
-                "${{ secrets.AZURE_VM_USER}}@${{secrets.AZURE_VM_HOST}}" \ 
+                ssh -p "${{ secrets.AZURE_VM_SSH_PORT }}" -i ~/.ssh/deploy_key \
+                "${{ secrets.AZURE_VM_USER }}@${{ secrets.AZURE_VM_HOST }}" \
                 "chmod +x /opt/app/deploy.sh && \
-                IMAGE_NAME='${{ env.IMAGE_NAME }}' \
-                IMAGE_TAG='${{ env.IMAGE_TAG }}' \
-                CONTAINER_NAME='app' \
-                APP_PORT='${{ secrets.APP_PORT }}' \
-                HEALTH_PATH='${{ secrets.HEALTH_PATH }}' \
-                DOCKERHUB_USERNAME='${{ secrets.DOCKERHUB_USERNAME }}' \
-                DOCKERHUB_TOKEN='${{ secrets.DOCKERHUB_TOKEN }}' \
-                /opt/app/deploy.sh"
+                 IMAGE_NAME='${{ env.IMAGE_NAME }}' \
+                 IMAGE_TAG='${{ env.IMAGE_TAG }}' \
+                 CONTAINER_NAME='app' \
+                 APP_PORT='${{ secrets.APP_PORT }}' \
+                 HEALTH_PATH='${{ secrets.HEALTH_PATH }}' \
+                 DOCKERHUB_USERNAME='${{ secrets.DOCKERHUB_USERNAME }}' \
+                 DOCKERHUB_TOKEN='${{ secrets.DOCKERHUB_TOKEN }}' \
+                 /opt/app/deploy.sh"
 
             - name: Clean up SSH key && Notify on slack
               if: success()
