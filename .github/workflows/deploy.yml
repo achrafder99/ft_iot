@@ -130,16 +130,20 @@ jobs:
             scripts/k8s-deploy.sh \
             "${{ secrets.AZURE_VM_USER }}@${{ secrets.AZURE_VM_HOST }}:/opt/app/k8s-deploy.sh"
 
-      - name: Apply k8s manifests and deploy the application
+      - name: Apply k8s manifests
         run: |
           ssh -p "${{ secrets.AZURE_VM_SSH_PORT }}" -i ~/.ssh/deploy_key \
             "${{ secrets.AZURE_VM_USER }}@${{ secrets.AZURE_VM_HOST }}" \
-            "kubectl apply -f /opt/app/k8s/namespace.yaml && \
+            "echo 'whoami:' \$(whoami) && \
+             echo 'KUBECONFIG before export:' \$KUBECONFIG && \
+             export KUBECONFIG=/home/deploy/.kube/config && \
+             echo 'KUBECONFIG after export:' \$KUBECONFIG && \
+             kubectl apply -f /opt/app/k8s/namespace.yaml && \
              kubectl get deployment nest-app -n app >/dev/null 2>&1 || kubectl apply -f /opt/app/k8s/deployment.yaml && \
              kubectl apply -f /opt/app/k8s/service.yaml && \
              kubectl apply -f /opt/app/k8s/ingress.yaml && \
              kubectl apply -f /opt/app/k8s/hpa.yaml"
-             
+
       - name: Run deployment
         run: |
           ssh -p "${{ secrets.AZURE_VM_SSH_PORT }}" -i ~/.ssh/deploy_key \
