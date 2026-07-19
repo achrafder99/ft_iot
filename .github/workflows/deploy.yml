@@ -130,6 +130,12 @@ jobs:
             scripts/k8s-deploy.sh \
             "${{ secrets.AZURE_VM_USER }}@${{ secrets.AZURE_VM_HOST }}:/opt/app/k8s-deploy.sh"
 
+      - name: Copy k8s manifests to server
+        run: |
+          scp -P "${{ secrets.AZURE_VM_SSH_PORT }}" -i ~/.ssh/deploy_key -r \
+            k8s \
+            "${{ secrets.AZURE_VM_USER }}@${{ secrets.AZURE_VM_HOST }}:/opt/app/k8s"
+
       - name: Apply k8s manifests
         run: |
           ssh -p "${{ secrets.AZURE_VM_SSH_PORT }}" -i ~/.ssh/deploy_key \
