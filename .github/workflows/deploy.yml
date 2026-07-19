@@ -144,11 +144,11 @@ jobs:
              echo 'KUBECONFIG before export:' \$KUBECONFIG && \
              export KUBECONFIG=/home/deploy/.kube/config && \
              echo 'KUBECONFIG after export:' \$KUBECONFIG && \
-             kubectl apply -f /opt/app/k8s/namespace.yaml && \
-             kubectl get deployment nest-app -n app >/dev/null 2>&1 || kubectl apply -f /opt/app/k8s/deployment.yaml && \
-             kubectl apply -f /opt/app/k8s/service.yaml && \
-             kubectl apply -f /opt/app/k8s/ingress.yaml && \
-             kubectl apply -f /opt/app/k8s/hpa.yaml"
+             kubectl apply -f /opt/app/k8s/namespace.yml && \
+             kubectl get deployment nest-app -n app >/dev/null 2>&1 || kubectl apply -f /opt/app/k8s/deployment.yml && \
+             kubectl apply -f /opt/app/k8s/service.yml && \
+             kubectl apply -f /opt/app/k8s/ingress.yml && \
+             kubectl apply -f /opt/app/k8s/hpa.yml"
 
       - name: Run deployment
         run: |
