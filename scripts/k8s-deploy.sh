@@ -15,6 +15,8 @@
 
 set -euo pipefail
 
+export KUBECONFIG="${KUBECONFIG:-/home/deploy/.kube/config}"
+
 : "${IMAGE_NAME:?IMAGE_NAME is required}"
 : "${IMAGE_TAG:?IMAGE_TAG is required}"
 : "${NAMESPACE:?NAMESPACE is required}"
