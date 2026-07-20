@@ -143,7 +143,7 @@ jobs:
       - name: Validate k8s manifests (kubeconform)
         run: |
           curl -sL https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xz
-          ./kubeconform -strict -summary k8s/*.yaml
+          ./kubeconform -strict -summary k8s/*.yml
 
       - name: Setup SSH
         run: |
