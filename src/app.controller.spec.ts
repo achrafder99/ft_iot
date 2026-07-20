@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello());
+    it('should return "From NestJs to K8S!"', () => {
+      expect(appController.getHello()).toBe('From NestJs to K8S!');
     });
   });
 });
